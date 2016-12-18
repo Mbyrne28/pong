@@ -26,8 +26,16 @@ ball = new Layer
 	
 bat = new Layer
 	height: 16
-	y: 1318
+	y: 1000
 	backgroundColor: "rgba(141,206,27,1)"
+
+
+	
+	
+joystick.onTouchMove (event, layer) ->
+	print event.x
+	bat.x = (event.x-88)*2
+    
 
 bat.draggable.horizontal = true
 bat.draggable.vertical = false
@@ -45,12 +53,12 @@ Utils.interval 0.01, ->
 		if ball.x <  0 or ball.x >  730
 			dirX = - dirX
 			
-		if ball.y >= 1300
-			#print "bounce Check"
+		if ball.y >= 1000
+			print "bounce Check"
 			if ball.x > bat.x and ball.x < (bat.x + 200)
-				#print "bounce"
+				print "bounce"
 				dirY = -dirY
 		if ball.y < -40
 			dirY = -dirY
-		if ball.y >  1334
+		if ball.y >  1000
 			ball.y = 41
