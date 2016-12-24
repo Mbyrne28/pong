@@ -2,9 +2,9 @@
 Basic Pong using framer.js
 
 ## Ball
-- bounces off wall
-- bounces off bat
-- spawns at top of screen when passing bat
+- bounces off wall ✓
+- bounces off bat ✓
+- spawns at top of screen when passing bat ✓
 
 ## Controls
 - left / right buttons
