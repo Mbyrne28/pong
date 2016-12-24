@@ -1,6 +1,6 @@
 {
   "orientation" : 0,
-  "updateDelay" : 0.3,
+  "updateDelay" : 0,
   "contentScale" : 1,
   "fullScreen" : false,
   "sharedPrototype" : 0,
@@ -12,9 +12,7 @@
   "deviceOrientation" : 0,
   "selectedHand" : "",
   "foldedCodeRanges" : [
-    "{0, 225}",
-    "{300, 179}",
-    "{481, 84}"
+    "{0, 225}"
   ],
   "deviceScale" : "fit"
 }
