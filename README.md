@@ -1,5 +1,5 @@
 # pong 1.0
-Very basic Pong using framer.js
+Basic Pong using framer.js
 
 ## Ball
 - bounces off wall
