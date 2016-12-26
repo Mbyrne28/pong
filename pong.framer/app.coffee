@@ -10,12 +10,34 @@ Framer.Info =
 
 
 SCREEN_WIDTH = 640
-BAT_WIDTH = 500
+BAT_WIDTH = 200
 BAT_Y = 1000
 BALL_SIZE = 40
 	
 bat_speed = 5
 bat_x = 0
+score = 0
+
+
+ball_speed = ->
+	return Utils.randomNumber(4, 10)
+
+
+
+score_board_BG = new Layer
+	width: 640
+	height: 40
+	backgroundColor: "rgba(140,206,53,0.25)"
+	
+score_board = new Layer
+	width: SCREEN_WIDTH
+	y: 5
+	backgroundColor: "none"
+
+
+score_board.html = "SCORE "+ score
+textStyle = { "text-align":"center", "font-family":"Courier New", "font-size":"40px"}
+score_board.style = textStyle
 
 left_BTN = new Layer
 	width: 300
@@ -44,8 +66,8 @@ ball = new Layer
 	width: BALL_SIZE
 	x: SCREEN_WIDTH/2 - BALL_SIZE / 2
 	y: 100
-	dirX = Utils.randomNumber(0, 10)
 	dirY = Utils.randomNumber(0, 6)
+	dirX = ball_speed()
 	
 bat = new Layer
 	height: 16
@@ -65,17 +87,24 @@ Utils.interval 0.01, ->
 		# --------------------
 			
 		if ball.y + dirY >= BAT_Y - BALL_SIZE
-			print "bounce Check"
+			#print "bounce Check"
 			if ball.x > bat.x and ball.x < (bat.x + BAT_WIDTH)
-				print "bounce"
+				##print "bounce"
 				dirY = -dirY
-				dirX += 2
-			
+				print dirX
+				score += 1
+				if Math.abs(dirX) < 20 
+					dirX *= 1.1
+			else
+				score = 0
+				dirX = ball_speed()
+				
+		score_board.html = "SCORE "+ score	
 		# ---------------------
 		# Ball Collision - Wall
 		# ---------------------
 		
-		if ball.y < -40
+		if ball.y + dirY <= BALL_SIZE
 			dirY = - dirY
 		if ball.y >  1000
 			ball.y = 41
