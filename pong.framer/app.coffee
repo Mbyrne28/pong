@@ -10,16 +10,12 @@ Framer.Info =
 
 
 SCREEN_WIDTH = 640
-BAT_WIDTH = 200
+BAT_WIDTH = 500
 BAT_Y = 1000
 BALL_SIZE = 40
-
-joystick = new Layer
-	width:750
-	height: 1340
-	backgroundColor: "black"
 	
-
+bat_speed = 5
+bat_x = 0
 
 left_BTN = new Layer
 	width: 300
@@ -32,11 +28,14 @@ right_BTN = new Layer
 	y: 1036
 	x: 340
 	
-left_BTN.onClick ->
-	print "left"
-
-right_BTN.onClick ->
-	print "right"
+left_BTN.onTapStart ->
+	bat_x = - bat_speed
+left_BTN.onTapEnd ->
+	bat_x = 0
+right_BTN.onTapStart ->
+	bat_x = + bat_speed
+right_BTN.onTapEnd ->
+	bat_x = 0
 	
 ball = new Layer
 	backgroundColor: "rgba(156,211,34,1)"
@@ -55,22 +54,6 @@ bat = new Layer
 	width: BAT_WIDTH
 	backgroundColor: "rgba(141,206,27,1)"
 
-## Ball
-# - bounces off wall
-# - bounces off bat
-# - spawns at top of screen when passing bat
-
-## Controls
-# - left / right buttons
-
-## Gameplay
-# - ball speed increases when striking bat
-# - score increases when ball hits bat
-
-#layerA = new Layer
-#	width: 640
-#	height: 1136
-
 gameLoop = false
 
 Utils.interval 0.01, ->
@@ -86,6 +69,7 @@ Utils.interval 0.01, ->
 			if ball.x > bat.x and ball.x < (bat.x + BAT_WIDTH)
 				print "bounce"
 				dirY = -dirY
+				dirX += 2
 			
 		# ---------------------
 		# Ball Collision - Wall
@@ -108,5 +92,8 @@ Utils.interval 0.01, ->
 		# =========
 		# Move Bat 
 		# =========
+		if bat.x + bat_x > 0 and bat.x + bat_x + BAT_WIDTH < SCREEN_WIDTH
+			bat.x += bat_x
+			
 
-
+		
