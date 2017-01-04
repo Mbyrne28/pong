@@ -7,8 +7,8 @@ Basic Pong using framer.js
 - spawns at top of screen when passing bat ✓
 
 ## Controls
-- left / right buttons
+- left / right buttons ✓
 
 ## Gameplay
-- ball speed increases when striking bat
-- score increases when ball hits bat
+- ball speed increases when striking bat ✓
+- score increases when ball hits bat ✓
